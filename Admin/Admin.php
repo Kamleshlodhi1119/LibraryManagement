@@ -1,6 +1,6 @@
 <?php
 // GOOD CODE EVERYTHING IS WORKING
-
+include(".././Student/header.php");
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
@@ -106,10 +106,10 @@ if (isset($_POST['submit'])) {
 
 // Delete a book from the database
 if (isset($_GET['title'])) {
- 
-$message = "Hello, this is a simple message!";
-echo $message;
- 
+
+    $message = "Hello, this is a simple message!";
+    echo $message;
+
 
     $conn = openConnection();
     $title = $_GET['title'];
@@ -143,36 +143,22 @@ echo $message;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link link rel="stylesheet" href="../Student/styles.css">
-    <style>
- body {
+    <style> </style>
 
-background-color:lightblue;
-opacity: 100%;
-margin: 12px;
-font-family: Arial, sans-serif;
-line-height: 1.6;
-margin: 12px;
-padding: 2rem;
-}
-    </style>
 </head>
 
 <body>
     <section>
-         
-            <div>
-                <h1>Admin<br /> Name : <?php echo $_SESSION['username']; ?></h1>
-                <button><a href="../logout.php">Logout</a></button>
+        <nav>
+            <ul>
+                <li><a href="operations.php"> New Book</a></li>
+                <li><a href="operations.php">Register member</a> </li>
+                <li><a href="operations.php">delete Member </a></li>
+                <li><a href="returnbook.php">returnbook</a></li>
+                <li><a href="pendingbookrequest.php">pending book request</a></li>
+                <li><a href="../logout.php"><button>Logout</button></a></li>
+            </ul>
             </div>
-       
-
-        <div class="">
-            <button ><a href="operations.php"> New Book</a></button>
-            <button ><a href="operations.php">Register member</a>  </button>
-            <button ><a href="operations.php">delete Member </a></button>
-            <button><a href="returnbook.php">returnbook</a></button>
-            <button><a href="pendingbookrequest.php">pending book request</a></button>
-        </div>
     </section>
 
     <section>
@@ -186,49 +172,52 @@ padding: 2rem;
         </div>
     </section>
     <section>
-            <h2>Book Listing</h2>
-            <table border="1px" class="book-table">
-                <tr> 
-                     <th>S.No</th>
-                    <th>ISBN</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Copies</th>
-                    <th  colspan='2'>operation</th>
-                </tr>
-                <?php
-                if (isset($_POST['search_books'])) {
-                    $keyword = $_POST['keyword'];
-                    $searchedBooks = searchBooks($keyword);
-                    $i=1;
-                    if (count($searchedBooks) > 0) {
-                        foreach ($searchedBooks as $book) {
-                            $isbn = $book['isbn'];
-                            $title = $book['title'];
-                           
-                            echo "<tr class='tr'>";
-                            echo "<td class='tr'>" . $i . "</td>";
-                            echo "<td class='tr'>" . $isbn . "</td>";
-                            echo "<td class='tr'>" . $book['title'] . "</td>";
-                            echo "<td class='tr'>" . $book['author'] . "</td>";
-                            echo "<td class='tr'>" . $book['category'] . "</td>";
-                            echo "<td class='tr'>" . $book['price'] . "</td>";
-                            echo "<td class='tr'>" . $book['copies'] . "</td>";
-                            echo "<td><a href='Admin.php?title=$title'>Delete</a></td>";
-                            echo "<td><a href='update-book.php?isbn=$isbn'>update Data</a></td>";
-                            echo "</tr class='tr'>";
-                            $i++;
-                        }
-                    } else {
-                        echo "<tr class='tr'><td colspan='6' class='tr'>No results found for the given keyword.</td></tr>";
+        <h2>Book Listing</h2>
+        <table border="2px solid" class="book-table">
+            <tr>
+                <th>S.No</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Copies</th>
+                <th colspan='2'>operation</th>
+            </tr>
+            <?php
+            if (isset($_POST['search_books'])) {
+                $keyword = $_POST['keyword'];
+                $searchedBooks = searchBooks($keyword);
+                $i = 1;
+                if (count($searchedBooks) > 0) {
+                    foreach ($searchedBooks as $book) {
+                        $isbn = $book['isbn'];
+                        $title = $book['title'];
+
+                        echo "<tr class='tr'>";
+                        echo "<td class='tr'>" . $i . "</td>";
+                        echo "<td class='tr'>" . $isbn . "</td>";
+                        echo "<td class='tr'>" . $book['title'] . "</td>";
+                        echo "<td class='tr'>" . $book['author'] . "</td>";
+                        echo "<td class='tr'>" . $book['category'] . "</td>";
+                        echo "<td class='tr'>" . $book['price'] . "</td>";
+                        echo "<td class='tr'>" . $book['copies'] . "</td>";
+                        echo "<td><a href='Admin.php?title=$title'>Delete</a></td>";
+                        echo "<td><a href='update-book.php?isbn=$isbn'>update Data</a></td>";
+                        echo "</tr class='tr'>";
+                        $i++;
                     }
+                } else {
+                    echo "<tr class='tr'><td colspan='6' class='tr'>No results found for the given keyword.</td></tr>";
                 }
-                ?>
-            </table>
+            }
+            ?>
+        </table>
     </section>
-  
+    <?php
+    // include(".././Student/header.php");
+    ?>
+
 
 </body>
 

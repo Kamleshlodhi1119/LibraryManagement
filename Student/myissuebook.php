@@ -68,29 +68,13 @@ function searchBooks($keyword)
 </head>
 
 <body>
-<section>
-        <div class="nav-container">
-            <nav class="nav">
-                <?php
-                // Displaying the welcome message and user details
-                $userDetails = getUserDetails($_SESSION['Username']);
-                if ($userDetails) {
-                    echo "<div>";
-                    echo "<h3>Welcome</h3>";
-                    echo "<h5>Name: <b>" . $userDetails['name'] . "</b></h5>";
-                    echo "<h5>Email: " . $userDetails['email'] . "</h5>";
-                    echo "<h5>Balance: " . $userDetails['balance'] . "</h5>";
-                    echo "<button><a href='../logout.php'>Logout</a></button>";
-                    echo "</div>";
-                }
-                ?>
-                 <div>
-                    <button><a href="student.php">Dashboard</a></button>
-                </div>
-            </nav>
-        </div>
-
-    </section>
+<nav>
+        <ul>
+            <li><a href="mypendingbookrequest.php"><button>My pending book request</button></a></li>
+            <!-- <li><a href="myissuebook.php"><button>Issue books</button></a></li> -->
+            <li><a href="student.php"><button>Dashboard</button></a></li>
+        </ul>
+    </nav>
     <section>
         <div class="container">
             <h2>Search Books</h2>

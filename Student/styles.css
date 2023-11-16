@@ -1,95 +1,92 @@
 body {
 
-    background-color:lightblue;
+    background-color: lightblue;
     opacity: 100%;
-    margin: 12px;
+    margin: 2px;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-  
+
 }
 
-   /* Header Styles */
-   header {
-       background-color: #FFD700;
-       color: #fff;
-       padding: 10px;
-   }
+/* Header Styles */
 
-   .nav-container {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-   }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-   .user-info {
-       text-align: center;
-   }
+.user-info {
+    text-align: center;
+}
 
-   .nav-links button {
-       background-color: transparent;
-       border: none;
-       color: #fff;
-       cursor: pointer;
-       margin-left: 10px;
-   }
+.nav-links button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px;
+}
 
-   .search-section {
-       background-color: #f0f0f0;
-       padding: 20px;
-   }
+.search-section {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
 
-   .container {
-       max-width: 300px;
-       margin: 0 auto;
-   }
+.container {
+    max-width: 300px;
+    margin: 0 auto;
+}
 
-   input[type="text"] {
-       flex: 1;
-       padding: 5px;
-   }
+input[type="text"] {
+    flex: 1;
+    padding: 5px;
+}
 
-   input[type="submit"] {
-       background-color: #333;
-       color: #fff;
-       border: none;
-       padding: 5px 15px;
-       cursor: pointer;
-   }
-
-   /* Book Listing Section Styles */
-   .book-listing-section {
-       padding: 10px;
-   }
-
-   .book-table {
-       width: 50%;
-      color: #333;/*change*/                    
-       border-collapse: collapse;
-       margin-left: 20%;
-   }
-
-   .book-table th,
-   .book-table td {
-       border: 1px solid #ccc;
-       padding: 10px;
-       text-align: center;
-   }
-
-   .book-table th {
-       background-color: #f0f0f0;
-   }
-         
-   footer {
+input[type="submit"] {
     background-color: #333;
     color: #fff;
-   
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+/* Book Listing Section Styles */
+.book-listing-section {
+    padding: 10px;
+}
+
+.book-table {
+    width: 50%;
+    color: #333;
+    /*change*/
+    /* border-collapse:  ; */
+    margin-left: 20%;
+}
+
+.book-table th,
+.book-table td {
+    border: 1px solid #ffc;
+    padding: 10px;
+    text-align: center;
+}
+
+.book-table th {
+    background-color: #f0f0f0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+
 
 }
-     .footer-content {
-         background-color: #334;
-         color:  #fff;
-         display: flex;
-         justify-content: space-evenly;
-        align-items: center;
-        flex-direction: row;
-     } 
+
+.footer-content {
+    background-color: #334;
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}

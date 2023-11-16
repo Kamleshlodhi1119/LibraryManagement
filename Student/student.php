@@ -43,7 +43,7 @@ function searchBooks($keyword)
 {
     $conn = openConnection();
     $sql = "SELECT * FROM `books` WHERE  `copies` > 0 AND (`title` LIKE '%$keyword%' OR `author` LIKE '%$keyword%')";
-    
+
     $result = $conn->query($sql);
     $books = [];
     if ($result && $result->num_rows > 0) {
@@ -71,50 +71,35 @@ function saveBookRequest($books_isbn, $Username)
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Interface</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Your CSS styles here */
-    </style>
+    
 </head>
-<body>
-    <header>
-        <h1>Welcome to the Student Interface</h1>
-    </header>
-    <section>
-        <div class="nav-container">
-            <nav class="nav">
-                <?php
-                $userDetails = getUserDetails($_SESSION['Username']);
-                if ($userDetails) {
-                    echo "<div>";
-                    echo "<h3>Student</h3>";
-                    echo "<h5>Name: <b>" . $userDetails['name'] . "</b></h5>";
-                    echo "<h5>Email: " . $userDetails['email'] . "</h5>";
-                    echo "<h5>Balance: " . $userDetails['balance'] . "</h5>";
-                    echo "<button><a href='../logout.php'>Logout</a></button>";
-                    echo "</div>";
-                }
-                ?>
 
-                <div>
-                    <button><a href="mypendingbookrequest.php">My pending book request</a></button>
-                </div><br />
-                <div>
-                    <button><a href="myissuebook.php">Issue books</a></button>
-                </div>
-            </nav>
-        </div>
-        <div class="container">
-            <h2>Search Books</h2>
-            <form action="#" method="post">
-                <input type="text" name="search_keyword" placeholder="Enter Title or Author">
-                <input type="submit" name="search_books" value="Search">
-            </form>
-        </div>
+<body>
+
+    <div>
+        <nav>
+            <ul>
+                <li><a href="mypendingbookrequest.php"> <button>My pending book request</button></a></li>
+                <li><a href="myissuebook.php"><button>Issue books</button></a></li>
+                <li><a href="profile.php"><button>profile</button></a></li>
+                <li><a href="../logout.php"><button>Logout</button></a></li>
+            </ul>
+
+        </nav>
+    </div>
+    <div class="container">
+        <h2>Search Books</h2>
+        <form action="#" method="post">
+            <input type="text" name="search_keyword" placeholder="Enter Title or Author">
+            <input type="submit" name="search_books" value="Search">
+        </form>
+    </div>
     </section>
 
     <section>
@@ -134,7 +119,7 @@ function saveBookRequest($books_isbn, $Username)
             if (isset($_POST['search_books'])) {
                 $keyword = $_POST['search_keyword'];
                 $searchedBooks = searchBooks($keyword);
-                $i=1;
+                $i = 1;
                 if (count($searchedBooks) > 0) {
                     foreach ($searchedBooks as $book) {
                         echo "<tr>";
@@ -169,8 +154,9 @@ function saveBookRequest($books_isbn, $Username)
         } else {
             echo "<script>alert('Error submitting book request. Please try again later.');</script>";
         }
-    } 
-    ?><pre>
+    }
+    ?>
+    <pre>
 
 
 
@@ -178,7 +164,7 @@ function saveBookRequest($books_isbn, $Username)
 
 
     </pre>
-    
+
     <section>
         <div>
             <footer>
@@ -207,4 +193,5 @@ function saveBookRequest($books_isbn, $Username)
         <script src="script.js"></script>
     </section>
 </body>
+
 </html>

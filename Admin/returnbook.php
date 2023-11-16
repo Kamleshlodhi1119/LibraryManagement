@@ -1,5 +1,5 @@
 <?php
-
+include(".././Student/header.php");
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
@@ -39,24 +39,24 @@ function searchBooks($keyword)
 if (isset($_GET['book_isbn'])) {
     $conn = openConnection();
     $book_isbn = $_GET['book_isbn'];
-    
-$updateStmt = $conn->prepare("UPDATE `books` SET `copies`=`copies`+1 WHERE isbn=?");
 
-if (!$updateStmt) {
-    echo "Error in SQL query: " . $conn->error;
-    exit();
-}
+    $updateStmt = $conn->prepare("UPDATE `books` SET `copies`=`copies`+1 WHERE isbn=?");
 
-$updateStmt->bind_param("s", $book_isbn);
+    if (!$updateStmt) {
+        echo "Error in SQL query: " . $conn->error;
+        exit();
+    }
 
-if (!$updateStmt->execute()) {
-    echo "Error executing query: " . $updateStmt->error;
-    exit();
-}
+    $updateStmt->bind_param("s", $book_isbn);
 
-$updateStmt->close(); // Close the prepared statement after execution
+    if (!$updateStmt->execute()) {
+        echo "Error executing query: " . $updateStmt->error;
+        exit();
+    }
 
-   
+    $updateStmt->close(); // Close the prepared statement after execution
+
+
 
     $stmt = $conn->prepare("DELETE FROM `books_issue_log` WHERE book_isbn=?");
 
@@ -73,7 +73,6 @@ $updateStmt->close(); // Close the prepared statement after execution
     } else {
         echo "Error executing query: " . $stmt->error;
     }
-    
 }
 
 
@@ -86,30 +85,32 @@ $updateStmt->close(); // Close the prepared statement after execution
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../Student/styles.css">
-    <style>body {
+    <style>
+        body {
 
-background-color:lightblue;
-opacity: 100%;
-margin: 12px;
-font-family: Arial, sans-serif;
-line-height: 1.6;
-margin: 12px;
-padding: 2rem;
-}</style>
+            background-color: lightblue;
+            opacity: 100%;
+            margin: 12px;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 12px;
+            padding: 2rem;
+        }
+    </style>
 </head>
 
 <body>
-    
-<section>
+
+    <section>
         <div class="nav-container">
             <nav class="nav">
                 <?php
                 // Displaying the welcome message and user details
-               
-                    echo "<div>";
-                    echo "<h3>Welcome</h3>";
-                    echo "<h5>Name: <b>" .$_SESSION['username'] . "</b></h5>";
-                    
+
+                echo "<div>";
+                echo "<h3>Welcome</h3>";
+                echo "<h5>Name: <b>" . $_SESSION['username'] . "</b></h5>";
+
                 ?>
                 <div>
                     <button><a href="Admin.php">Dashboard</a></button>
@@ -129,7 +130,7 @@ padding: 2rem;
         </form>
 
     </div>
-    
+
     <div>
         <div>
             <h2>Book Listing</h2>
@@ -139,7 +140,7 @@ padding: 2rem;
                     <th>member</th>
                     <th>book_isbn</th>
                     <th>due_date</th>
-                     <th>return</th>
+                    <th>return</th>
                 </tr>
                 <?php
                 if (isset($_POST['search_books'])) {
@@ -153,7 +154,7 @@ padding: 2rem;
                             echo "<td class='tr'>" . $book['member_id'] . "</td>";
                             echo "<td class='tr'>" . $book['book_isbn'] . "</td>";
                             echo "<td class='tr'>" . $book['due_date'] . "</td>";
-                             echo "<td><a href='returnbook.php?book_isbn=$book_isbn'>return </a></td>";
+                            echo "<td><a href='returnbook.php?book_isbn=$book_isbn'>return </a></td>";
                             echo "</tr class='tr'>";
                         }
                     } else {
@@ -164,7 +165,7 @@ padding: 2rem;
             </table>
         </div>
     </div>
-    <?php include("../footer.php");?>
+    <?php include("../footer.php"); ?>
 </body>
 
 </html>

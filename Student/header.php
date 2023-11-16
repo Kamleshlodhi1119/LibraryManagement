@@ -1,71 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Interface</title>
-     
-    <style>
-         
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
 
-        .profile-block {
-            display: flex;
-            align-items: center;
-        }
+      background-color: lightblue;
+      opacity: 100%;
 
-        .profile-picture {
-            width: 40px; /* Adjust the size of the profile picture */
-            height: 40px; /* Adjust the size of the profile picture */
-            border-radius: 50%; /* Make the picture round */
-            margin-right: 10px;
-            background-color: goldenrod; /* Profile picture background color */
-        }
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-        }
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 50px 0;
+    }
 
-        .profile-info h3 {
-            margin: 0;
-        }
+    h1 {
+      font-size: 36px;
+    }
 
-        .header-buttons {
-            display: flex;
-        }
+    h2 {
+      font-size: 24px;
+      font-style: italic;
+    }
 
-        .header-buttons a {
-            text-decoration: none;
-            color: #fff;
-            margin-right: 10px;
-        }
-    </style>
+
+    nav {
+      background-color: #444;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav li {
+      display: inline-block;
+      padding: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 30px;
+    }
+
+    .testimonial-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .testimonial {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 5px;
+      margin: 10px;
+    }
+
+    .social-proof {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .partner-logos {
+      display: flex;
+      justify-content: center;
+    }
+
+    .partner-logos1 {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .partner-logos img {
+      width: 100px;
+      margin: 10px;
+    }
+
+    .partner-logos1 img {
+      width: 100px;
+      margin: 10px;
+    }
+
+    .latest-updates {
+      text-align: center;
+    }
+
+    .blog-post {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 5px;
+      margin: 10px;
+    }
+
+    .read-more {
+      color: #ff6600;
+      text-decoration: none;
+    }
+
+    footer {
+      background-color: #444;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .contact-info,
+    .social-media,
+    .useful-resources {
+      margin: 10px;
+    }
+
+    .dropbtn {
+      background-color: blue;
+      color: white;
+      padding: 8px 15px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="profile-block">
-            <div class="profile-picture"></div>
-            <div class="profile-info">
-                <h3>Welcome, [Username]</h3> <!-- Replace [Username] with the actual username -->
-                <p>Email: [Email]</p> <!-- Replace [Email] with the actual email address -->
-            </div>
-        </div>
-        <div class="header-buttons">
-            <a href="home.php">Home</a>
-            <a href="books.php">Books</a>
-            <a href="profile.php">Profile</a>
-        </div>
-    </header>
+  <header>
+    <div class="partner-logos1">
 
-    <!-- Rest of your HTML content -->
-    <section>
-        <!-- Your content here -->
-    </section>
+      <img src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png" alt="kmlesh 1">
 
-    <!-- Footer -->
-    <footer>
-        <!-- Your footer content here -->
-    </footer>
-</body>
-</html>
+      <h2>Library Management System<br>Empowering Knowledge, Connecting Minds</h2>
+      <h4></h4>
+
+    </div>
+  </header>
