@@ -179,25 +179,7 @@ if (isset($_GET['approve'])) {
 
 <body>
 
-    <section>
-        <div class="nav-container">
-            <nav class="nav">
-                <?php
-                // Displaying the welcome message and user details
-
-                echo "<div>";
-                echo "<h3>Welcome</h3>";
-                echo "<h5>Name: <b>" . $_SESSION['username'] . "</b></h5>";
-
-                ?>
-                <div>
-                    <button><a href="Admin.php">Dashboard</a></button>
-                </div>
-            </nav>
-        </div>
-
-
-    </section>
+    
 
     <div class="container">
         <h2>Search Books</h2>
