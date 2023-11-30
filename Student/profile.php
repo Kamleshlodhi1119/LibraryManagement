@@ -152,7 +152,7 @@ function openConnection()
                         echo "<td>" . $userDetails['email'] . "</td>";
                         echo "</tr>";
                         echo "<tr>";
-                        echo "<td>Username</td>";
+                        echo "<td>Address</td>";
                         echo "<td>:</td>";
                         echo "<td>" . $userDetails['address'] . "</td>";
                         echo "</tr>";
