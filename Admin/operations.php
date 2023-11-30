@@ -1,6 +1,89 @@
 <?php
 include(".././Student/header.php");
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "library_db";
+
+function openConnection()
+{
+    global $host, $username, $password, $database;
+    $conn = new mysqli($host, $username, $password, $database);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    return $conn;
+}
+
+// Add Book Form Submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_book'])) {
+    $conn = openConnection();
+
+    // Escape user inputs for security
+    $isbn = mysqli_real_escape_string($conn, $_POST['isbn']);
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $author = mysqli_real_escape_string($conn, $_POST['author']);
+    $category = mysqli_real_escape_string($conn, $_POST['category']);
+    $price = mysqli_real_escape_string($conn, $_POST['price']);
+    $copies = mysqli_real_escape_string($conn, $_POST['copies']);
+
+    // Perform insert query for Book
+    $sqlInsertBook = "INSERT INTO books (isbn, title, author, category, price, copies) VALUES ('$isbn', '$title', '$author', '$category', '$price', '$copies')";
+
+    if ($conn->query($sqlInsertBook) === TRUE) {
+        echo "Book added successfully";
+    } else {
+        echo "Error: " . $sqlInsertBook . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+
+// Register Form Submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    $conn = openConnection();
+
+    // Escape user inputs for security
+    $username = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['emailid']);
+    $balance = mysqli_real_escape_string($conn, $_POST['balance']);
+
+    // Perform insert query for Member
+    $sqlInsertMember = "INSERT INTO member (Username, password, name, email, balance) VALUES ('$username', '$password', '$name', '$email', '$balance')";
+
+    if ($conn->query($sqlInsertMember) === TRUE) {
+        echo "Member registered successfully";
+    } else {
+        echo "Error: " . $sqlInsertMember . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+
+// Delete Form Submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && isset($_POST['email'])) {
+    $conn = openConnection();
+
+    // Escape user input for security
+    $usernameToDelete = mysqli_real_escape_string($conn, $_POST['email']);
+
+    // Perform delete query for Member
+    $sqlDeleteMember = "DELETE FROM member WHERE Username = '$usernameToDelete'";
+
+    if ($conn->query($sqlDeleteMember) === TRUE) {
+        echo "Member deleted successfully";
+    } else {
+        echo "Error: " . $sqlDeleteMember . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
 ?>
+
+ 
 <!DOCTYPE html>
 <html lang="en">
 
