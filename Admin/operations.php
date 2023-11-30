@@ -40,19 +40,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_book'])) {
     $conn->close();
 }
 
+
 // Register Form Submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $conn = openConnection();
-
-    // Escape user inputs for security
-    $username = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['emailid']);
-    $balance = mysqli_real_escape_string($conn, $_POST['balance']);
-
+    $username = $_POST['email'];
+    $password = $_POST['password'];
+    $name = $_POST['name'];
+    $email = $_POST['emailid'];
+    $balance = $_POST['balance'];
+    $address = $_POST['address'];
     // Perform insert query for Member
-    $sqlInsertMember = "INSERT INTO member (Username, password, name, email, balance) VALUES ('$username', '$password', '$name', '$email', '$balance')";
+    $sqlInsertMember = "INSERT INTO member (Username, password, name, email, balance,address) VALUES ('$username', '$password', '$name', '$email', '$balance','$address')";
 
     if ($conn->query($sqlInsertMember) === TRUE) {
         echo "Member registered successfully";
@@ -147,6 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && isset($_P
                         <input type="email" name="emailid" required style="width: 100%; padding: 5px; margin-bottom: 10px;"><br>
                         <label for="balance" style="display: block; margin-bottom: 5px;">Balance:</label>
                         <input type="number" name="balance" required style="width: 100%; padding: 5px; margin-bottom: 10px;"><br>
+                        <label for="address" style="display: block; margin-bottom: 5px;">Address:</label>
+                        <input type="number" name="address" required style="width: 100%; padding: 5px; margin-bottom: 10px;"><br>
                         <input type="submit" name="submit" value="Register" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
                     </form>
                 </div>
