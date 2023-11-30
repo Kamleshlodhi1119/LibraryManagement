@@ -16,8 +16,10 @@ CREATE TABLE IF NOT EXISTS member (
   password CHAR(40) NOT NULL,
   name VARCHAR(80) NOT NULL,
   email VARCHAR(80) NOT NULL,
-  balance INT(4) NOT NULL
+  balance INT(4) NOT NULL,
+  address VARCHAR(255) DEFAULT 'N/A'
 );
+
 
 -- Table for Book
 CREATE TABLE IF NOT EXISTS books (

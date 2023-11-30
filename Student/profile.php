@@ -26,20 +26,97 @@ function openConnection()
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student InterFace</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Your CSS styles here */
-    </style>
-</head>
+    <title>Profile Page</title>
 
+    <!-- Custom Css -->
+
+    <style>
+        /* NavbarTop */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            padding-top: 15px;
+            position: absolute;
+            left: 45%;
+        }
+
+        .navbar-top ul {
+            float: right;
+            list-style-type: none;
+            margin: 0;
+            overflow: hidden;
+            padding: 18px 50px 0 40px;
+        }
+
+        .navbar-top ul li {
+            float: left;
+        }
+
+        .navbar-top ul li a {
+            color: #333;
+            padding: 14px 16px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .icon-count {
+            background-color: #ff0000;
+            color: #fff;
+            float: right;
+            font-size: 11px;
+            left: -25px;
+            padding: 2px;
+            position: relative;
+        }
+
+        /* End */
+
+        /* Main */
+        .main {
+            margin-top: 2%;
+            margin-left: 29%;
+            font-size: 28px;
+            padding: 0 10px;
+            width: 58%;
+        }
+
+        .main h2 {
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .main .card {
+            background-color: #fff;
+            border-radius: 18px;
+            box-shadow: 1px 1px 8px 0 grey;
+            height: auto;
+            margin-bottom: 20px;
+            padding: 20px 0 20px 50px;
+        }
+
+        .main .card table {
+            border: none;
+            font-size: 16px;
+            height: 270px;
+            width: 80%;
+        }
+
+        .edit {
+            position: absolute;
+            color: #e7e7e8;
+            right: 14%;
+        }
+    </style>
+
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
 <body>
     <nav>
         <ul>
@@ -48,59 +125,53 @@ function openConnection()
             <li><a href="student.php"><button>Dashboard</button></a></li>
         </ul>
     </nav>
-    <div>
-        <?php
-        $userDetails = getUserDetails($_SESSION['Username']);
-        if ($userDetails) {
-            echo "<div>";
-            echo "<h3>Student</h3>";
-            echo "<h5>Name: <b>" . $userDetails['name'] . "</b></h5>";
-            echo "<h5>Email: " . $userDetails['email'] . "</h5>";
-            echo "<h5>Balance: " . $userDetails['balance'] . "</h5>";
-            echo "<button><a href='../logout.php'>Logout</a></button>";
-            echo "</div>";
-        }
-        ?>
+    <!-- Navbar top -->
+    <div class="navbar-top">
+        <!-- Navbar -->
+        <!-- End -->
 
-    </div>
-
-
-    <pre>
-
-
-
-
-
-
-    </pre>
-
-    <section>
-        <div>
-            <footer>
-                <div class="footer-content">
-                    <div class="contact-info">
-                        <h4>Contact Us</h4>
-                        <p>Email: kamleshlodhi9302@gmail.com</p>
-                        <p>Phone: +1 123-456-7890</p>
-                    </div>
-                    <div class="social-media">
-                        <h4>Follow Us</h4>
-                        <!-- Add social media links here -->
-                        <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-                        <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-                        <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-                    </div>
-                    <div class="useful-resources">
-                        <h4>Useful Resources</h4>
-                        <!-- Add useful resource links here -->
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                    </div>
+        <!-- Main -->
+        <div class="main">
+            <h2>IDENTITY</h2>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fa fa-pen fa-xs edit"></i>
+                    <?php
+                    $userDetails = getUserDetails($_SESSION['Username']);
+                    if ($userDetails) {
+                        echo "<table>";
+                        echo "<tbody>";
+                        echo "<tr>";
+                        echo "<td>Name</td>";
+                        echo "<td>:</td>";
+                        echo "<td>" . $userDetails['name'] . "</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>Email</td>";
+                        echo "<td>:</td>";
+                        echo "<td>" . $userDetails['email'] . "</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>Username</td>";
+                        echo "<td>:</td>";
+                        echo "<td>" . $userDetails['address'] . "</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>Balance</td>";
+                        echo "<td>:</td>";
+                        echo "<td>" . $userDetails['balance'] . "</td>";
+                        echo "</tr>";
+                        echo "</tbody>";
+                        echo "</table>";
+                        echo "<button><a href='../logout.php'>Logout</a></button>";
+                    }
+                    ?>
                 </div>
-            </footer>
+            </div>
         </div>
-        <script src="script.js"></script>
-    </section>
-</body>
 
+       
+    </div>
+    <!-- End -->
+</body>
 </html>

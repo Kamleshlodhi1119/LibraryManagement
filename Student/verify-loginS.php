@@ -3,6 +3,7 @@ $host = "localhost";
 $username = "root";
 $password = "";
 $database = "library_db";
+
 function verifyLogin($username, $password)
 {
     $conn = openConnection();
@@ -16,22 +17,22 @@ function verifyLogin($username, $password)
     return false;
 }
 
-
 function getUserDetails($username)
 {
     $conn = openConnection();
-    $sql = "SELECT balance, email, name FROM member WHERE username = '$username'";
+    $sql = "SELECT balance, email, name, address FROM member WHERE username = '$username'";
     $result = $conn->query($sql);
     $userDetails = array();
+    
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $userDetails['email'] = $row['email'];
         $userDetails['name'] = $row['name'];
         $userDetails['balance'] = $row['balance'];
+        $userDetails['address'] = $row['address']; // Include the 'address' field
     }
+    
     $conn->close();
     return $userDetails;
 }
-
-
 ?>
