@@ -85,38 +85,27 @@ if (isset($_GET['book_isbn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../Student/styles.css">
-    <style>
-        body {
-
-            background-color: lightblue;
-            opacity: 100%;
-            margin: 12px;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 12px;
-            padding: 2rem;
-        }
-    </style>
+    
 </head>
 
 <body>
 
     <section>
-        <div class="nav-container">
-            <nav class="nav">
+       
+            <nav>
                 <?php
                 // Displaying the welcome message and user details
 
-                echo "<div>";
-                echo "<h3>Welcome</h3>";
-                echo "<h5>Name: <b>" . $_SESSION['username'] . "</b></h5>";
+                // echo "<div>";
+                // echo "<h3>Welcome</h3>";
+                // echo "<h5>Name: <b>" . $_SESSION['username'] . "</b></h5>";
 
                 ?>
                 <div>
-                    <button><a href="Admin.php">Dashboard</a></button>
+                    <a href="Admin.php"><button>Dashboard</button></a>
                 </div>
             </nav>
-        </div>
+       
 
 
     </section>

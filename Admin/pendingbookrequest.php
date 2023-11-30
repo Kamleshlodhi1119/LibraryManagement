@@ -163,23 +163,17 @@ if (isset($_GET['approve'])) {
     <title>Document</title>
     <link rel="stylesheet" href="Admin.css">
     <link rel="Stylesheet" href="../Student/styles.css">
-    <style>
-        body {
 
-            background-color: lightblue;
-            opacity: 100%;
-            margin: 12px;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 12px;
-            padding: 2rem;
-        }
-    </style>
 </head>
 
 <body>
+    <nav>
 
-    
+        <div>
+            <a href="Admin.php"><button>Dashboard</button></a>
+        </div>
+    </nav>
+
 
     <div class="container">
         <h2>Search Books</h2>

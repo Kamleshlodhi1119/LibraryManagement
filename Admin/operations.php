@@ -9,18 +9,7 @@ include(".././Student/header.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="Stylesheet" href="../Student/styles.css">
-    <style>
-        body {
-
-            background-color: lightblue;
-            opacity: 100%;
-            margin: 12px;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 12px;
-            padding: 2rem;
-        }
-    </style>
+   
 </head>
 
 <body>
