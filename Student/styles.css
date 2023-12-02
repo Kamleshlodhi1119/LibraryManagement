@@ -90,3 +90,171 @@ footer {
     align-items: center;
     flex-direction: row;
 }
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-style: italic;
+  }
+
+
+  nav {
+    background-color: #444;
+    text-align: center;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav li {
+    display: inline-block;
+    padding: 20px;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  main {
+    padding: 30px;
+  }
+
+  .testimonial-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .testimonial {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .social-proof {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .partner-logos {
+    display: flex;
+    justify-content: center;
+  }
+
+  .partner-logos1 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .partner-logos img {
+    width: 100px;
+    margin: 10px;
+  }
+
+  .partner-logos1 img {
+    width: 100px;
+    margin: 10px;
+  }
+  .latest-updates {
+    text-align: center;
+  }
+
+  .blog-post {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .read-more {
+    color: #ff6600;
+    text-decoration: none;
+  }
+
+  footer {
+    background-color: #252525;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .contact-info,
+  .social-media,
+  .useful-resources {
+    margin: 10px;
+  }
+
+  .dropbtn {
+    background-color: blue;
+    color: white;
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+.fa {
+padding: 20px;
+font-size: 30px;
+width: 30px;
+text-align: center;
+text-decoration: none;
+border-radius:50%  ;
+margin: 5px 2px;
+}
+
+.fa:hover {
+    background-color: #1200b5;
+    transform: rotate(90deg);
+  opacity: 0.5;
+}
+
+.fa-facebook {
+background: #3B5998;
+color: white;
+}
+
+.fa-twitter {
+background: #55ACEE;
+color: white;
+}
+
+.fa-google {
+background: #dd4b39;
+color: white;
+}
+
+.fa-linkedin {
+background: #007bb5;
+color: white;
+}
+
+.fa-youtube {
+background: #bb0000;
+color: white;
+}
+
+.fa-instagram {
+background: #125688;
+color: white;
+}
