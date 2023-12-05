@@ -90,7 +90,7 @@ if (isset($_GET['reject'])) {
     </nav>
     <section>
         <div class="container">
-            <h2>Search Books</h2>
+            <h2>Search pending Books</h2>
             <form action="#" method="post">
                 <input type="text" name="keyword" placeholder="Enter books_isbn">
                 <input type="submit" name="search_books" value="Search">
@@ -98,8 +98,11 @@ if (isset($_GET['reject'])) {
             </form>
 
         </div>
+        <div><pre>
+
+        </pre></div>
         <div>
-            <h2>Book Listing</h2>
+            
             <table border="1px" class="book-table">
                 <tr>
                     <th>request_id</th>

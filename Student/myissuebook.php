@@ -66,7 +66,7 @@ function searchBooks($keyword)
     </nav>
     <section>
         <div class="container">
-            <h2>Search Books</h2>
+            <h2>Search Issued Books</h2>
             
             <form action="#" method="post">
                 <input type="text" name="keyword" placeholder="Enter books_isbn  ">
@@ -74,9 +74,12 @@ function searchBooks($keyword)
 
             </form>
 
-        </div>
+        </div><pre>
+
+            
+            </pre>
         <div>
-            <h2>Book Listing</h2>
+           
             <table border="1px" class="book-table">
                 <tr>
                     <th>member_id</th>

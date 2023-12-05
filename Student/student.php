@@ -94,7 +94,7 @@ function saveBookRequest($books_isbn, $Username)
         </nav>
     </div>
     <div class="container">
-        <h2>Search Books</h2>
+        <h2 style="display: flex; justify-content: center;">Search Books</h2>
         <form action="#" method="post">
             <input type="text" name="search_keyword" placeholder="Enter Title or Author">
             <input type="submit" name="search_books" value="Search">
@@ -103,7 +103,7 @@ function saveBookRequest($books_isbn, $Username)
     </section>
 
     <section>
-        <h2>Book Listing</h2>
+    <h2 style="display: flex; justify-content: center; text-shadow:2px 2px rgb(124, 189, 164); background-color: aqua;"> Books</h2>
         <table border="1px" class="book-table">
             <tr>
                 <th>S.No</th>
