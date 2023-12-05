@@ -151,9 +151,8 @@ if (isset($_GET['title'])) {
     <section>
         <nav>
             <ul>
-                <li><a href="operations.php"> New Book</a></li>
-                <li><a href="operations.php">Register member</a> </li>
-                <li><a href="operations.php">delete Member </a></li>
+                <li><a href="profile.php"> profile</a></li>
+                <li><a href="operations.php">operations</a></li>
                 <li><a href="returnbook.php">returnbook</a></li>
                 <li><a href="pendingbookrequest.php">pending book request</a></li>
                 <li><a href="../logout.php"><button>Logout</button></a></li>

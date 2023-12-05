@@ -145,7 +145,7 @@
   <header>
     <div class="partner-logos1">
 
-      <img src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png" alt="kmlesh 1">
+      <img src="../img/library-management-library-icons-png.jpg" alt="kmlesh 1" style="border-radius: 50%;">
 
       <h2>Library Management System<br>Empowering Knowledge, Connecting Minds</h2>
       <h4></h4>
