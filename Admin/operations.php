@@ -100,9 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && isset($_P
         <nav>
             <ul>
                 <li> <a href="Admin.php"><button>Dashboard</button></a> </li>
-                <li><button onclick="toggleAddBookForm('addBookForm')"> New Book </button></li>
-                <li><button onclick="toggleAddBookForm('register')"> Register member </button></li>
-                <li> <button onclick="toggleAddBookForm('delete')"> delete Member </button></li>
+                <li><button onclick="toggleForm('addBookForm')">Add Book</button></li>
+                <li><button onclick="toggleForm('register')">Register</button></li>
+                <li> <button onclick="toggleForm('delete')">Delete</button></li>
+            
             </ul>
         </nav>
 
@@ -167,11 +168,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && isset($_P
         </section>
 
         <script>
-            function toggleAddBookForm(targetid) {
-                const addBookForm = document.getElementById(targetid);
-                addBookForm.style.display = addBookForm.style.display === 'none' ? 'block' : 'none';
-            }
-        </script>
+          
+  function toggleForm(formId) {
+    // Hide all forms
+    document.querySelectorAll('.add-book-box').forEach(form => {
+      form.style.display = 'none';
+    });
+
+    // Show the clicked form
+    const clickedForm = document.getElementById(formId);
+    if (clickedForm) {
+      clickedForm.style.display = 'block';
+    }
+  }
+</script>
+
         <?php
 
 
