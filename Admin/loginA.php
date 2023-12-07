@@ -49,7 +49,7 @@ if (isset($_POST["submit"])) {
 
             background-color:lightblue;
             opacity: 100%;
-            background-image: url('../img/images.webp');
+            background-image: url('../img/library.gif');
             background-size: cover;
             margin: 12px;
             padding: 2rem;

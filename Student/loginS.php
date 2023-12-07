@@ -46,7 +46,7 @@ if (isset($_POST["submit"])) {
     <style>
         body {
 
-            background-image: url('../img/images.webp');
+            background-image: url('../img/library.gif' );
             background-size: cover;
 
             margin: 12px;
