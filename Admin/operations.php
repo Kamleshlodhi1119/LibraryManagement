@@ -61,9 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     $conn->close();
 }
-
 // Delete Form Submission
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && isset($_POST['email'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user']) && isset($_POST['email'])) {
     $conn = openConnection();
 
     // Escape user input for security
@@ -73,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && isset($_P
     $sqlDeleteMember = "DELETE FROM member WHERE Username = '$usernameToDelete'";
 
     if ($conn->query($sqlDeleteMember) === TRUE) {
-        echo "Member deleted successfully";
+        echo 'Member deleted successfully';
     } else {
         echo "Error: " . $sqlDeleteMember . "<br>" . $conn->error;
     }
@@ -160,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && isset($_P
                         <label for="email" style="display: block; margin-bottom: 5px;">Username:</label>
                         <input type="text" name="email" required style="width: 100%; padding: 5px; margin-bottom: 10px;"><br>
 
-                        <input type="submit" name="submit" value="Delete" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                        <input type="submit" name="delete_user" value="Delete" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
                     </form>
                 </div>
 
