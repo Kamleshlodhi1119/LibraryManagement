@@ -55,18 +55,40 @@ function searchBooks($keyword)
     return $books;
 }
 
+
+// books request
 function saveBookRequest($books_isbn, $Username)
 {
     $conn = openConnection();
-    $sql = "INSERT INTO `pending_books_requests` (`request_id`, `Username`, `book_isbn`, `time`) VALUES (NULL, '$Username', '$books_isbn', NOW());";
-    if ($conn->query($sql) === TRUE) {
+
+    
+    $sqlCheckPendingRequest = "SELECT * FROM `pending_books_requests` WHERE `Username` = '$Username' AND `book_isbn` = '$books_isbn'";
+    $resultPending = $conn->query($sqlCheckPendingRequest);
+
+    
+    $sqlCheckIssuedBooks = "SELECT * FROM `books_issue_log` WHERE `Username` = '$Username' AND `book_isbn` = '$books_isbn'";
+    $resultIssued = $conn->query($sqlCheckIssuedBooks);
+
+    
+    if ($resultPending->num_rows > 0 || $resultIssued->num_rows > 0) {
         $conn->close();
-        return true;
-    } else {
-        $conn->close();
+        echo "Error: Book request for this book is already in progress or has been issued.";
         return false;
+    } else {
+        
+        $sqlInsertRequest = "INSERT INTO `pending_books_requests` (`request_id`, `Username`, `book_isbn`, `time`) VALUES (NULL, '$Username', '$books_isbn', NOW())";
+
+        if ($conn->query($sqlInsertRequest) === TRUE) {
+            $conn->close();
+            return true;
+        } else {
+            $conn->close();
+            return false;
+        }
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>

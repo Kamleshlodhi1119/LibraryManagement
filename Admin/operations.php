@@ -43,23 +43,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_book'])) {
 // Register Form Submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $conn = openConnection();
+    
     $username = $_POST['email'];
     $password = $_POST['password'];
     $name = $_POST['name'];
     $email = $_POST['emailid'];
     $balance = $_POST['balance'];
     $address = $_POST['address'];
-    // Perform insert query for Member
-    $sqlInsertMember = "INSERT INTO member (Username, password, name, email, balance, address) VALUES ('$username', '$password', '$name', '$email', '$balance', '$address')";
 
-    if ($conn->query($sqlInsertMember) === TRUE) {
-        echo "Member registered successfully";
+    // Check if the email already exists
+    $sqlCheckEmail = "SELECT * FROM member WHERE email = '$email'";
+    $result = $conn->query($sqlCheckEmail);
+
+    if ($result->num_rows > 0) {
+        echo "Error: User with this email already exists";
     } else {
-        echo "Error: " . $sqlInsertMember . "<br>" . $conn->error;
+        // Perform insert query for Member
+        $sqlInsertMember = "INSERT INTO member (Username, password, name, email, balance, address) VALUES ('$username', '$password', '$name', '$email', '$balance', '$address')";
+
+        if ($conn->query($sqlInsertMember) === TRUE) {
+            echo "Member registered successfully";
+        } else {
+            echo "Error: " . $sqlInsertMember . "<br>" . $conn->error;
+        }
     }
 
     $conn->close();
 }
+
 
 //user details and delete button
 // Check if the form is submitted for deleting a user
