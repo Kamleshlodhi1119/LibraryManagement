@@ -73,6 +73,7 @@ function saveBookRequest($books_isbn, $Username)
     if ($resultPending->num_rows > 0 || $resultIssued->num_rows > 0) {
         $conn->close();
         echo "Error: Book request for this book is already in progress or has been issued.";
+
         return false;
     } else {
         
@@ -90,6 +91,9 @@ function saveBookRequest($books_isbn, $Username)
 
 
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -169,13 +173,9 @@ function saveBookRequest($books_isbn, $Username)
         $books_isbn = $_GET['request_book'];
         $Username = $_SESSION['Username'];
 
-        if (saveBookRequest($books_isbn, $Username)) {
-            echo "<script>alert('Book request submitted successfully!');</script>";
-            echo "<script>window.location.href ='student.php';</script>";
-            exit();
-        } else {
-            echo "<script>alert('Error submitting book request. Please try again later.');</script>";
-        }
+     saveBookRequest($books_isbn, $Username);
+
+        
     }
     ?>
     <pre>
