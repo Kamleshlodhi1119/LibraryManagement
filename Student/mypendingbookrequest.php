@@ -42,19 +42,21 @@ function searchBooks($keyword)
     return $books;
 }
 
+// ...
+
 if (isset($_GET['reject'])) {
     $conn = openConnection();
     $books_isbn = $_GET['reject'];
     $member = $_SESSION['Username'];
 
-    $stmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE books_isbn=? AND  member= '$member' ");
+    $stmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE book_isbn = ? AND Username = ?");
 
     if (!$stmt) {
         echo "Error in SQL query: " . $conn->error;
         exit();
     }
 
-    $stmt->bind_param("s", $books_isbn);
+    $stmt->bind_param("ss", $books_isbn, $member);
 
     if ($stmt->execute()) {
         header("Location: mypendingbookrequest.php");
@@ -63,6 +65,9 @@ if (isset($_GET['reject'])) {
         echo "Error executing query: " . $stmt->error;
     }
 }
+
+// ...
+
 
 
 

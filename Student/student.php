@@ -61,28 +61,38 @@ function saveBookRequest($books_isbn, $Username)
 {
     $conn = openConnection();
 
-    
+    // Check for connection errors
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
     $sqlCheckPendingRequest = "SELECT * FROM `pending_books_requests` WHERE `Username` = '$Username' AND `book_isbn` = '$books_isbn'";
     $resultPending = $conn->query($sqlCheckPendingRequest);
 
-    
-    $sqlCheckIssuedBooks = "SELECT * FROM `books_issue_log` WHERE `Username` = '$Username' AND `book_isbn` = '$books_isbn'";
+    $sqlCheckIssuedBooks = "SELECT * FROM `books_issue_log` WHERE `member_id` = '$Username' AND `book_isbn` = '$books_isbn'";
     $resultIssued = $conn->query($sqlCheckIssuedBooks);
 
-    
-    if ($resultPending ->num_rows > 0|| $resultIssued->num_rows > 0) {
+    // Check for query execution errors
+    if ($resultPending === FALSE || $resultIssued === FALSE) {
+        echo "Error: " . $conn->error;
+        $conn->close();
+        return false;
+    }
+
+    // Check if rows exist in the result set
+    if ($resultPending->num_rows > 0 || $resultIssued->num_rows > 0) {
         $conn->close();
         echo "Error: Book request for this book is already in progress or has been issued.";
-
         return false;
     } else {
-        
+        // Insert the book request
         $sqlInsertRequest = "INSERT INTO `pending_books_requests` (`request_id`, `Username`, `book_isbn`, `time`) VALUES (NULL, '$Username', '$books_isbn', NOW())";
 
         if ($conn->query($sqlInsertRequest) === TRUE) {
             $conn->close();
             return true;
         } else {
+            echo "Error: " . $conn->error;
             $conn->close();
             return false;
         }
