@@ -70,7 +70,7 @@ function saveBookRequest($books_isbn, $Username)
     $resultIssued = $conn->query($sqlCheckIssuedBooks);
 
     
-    if ($resultPending->num_rows > 0 || $resultIssued->num_rows > 0) {
+    if ($resultPending ->num_rows > 0|| $resultIssued->num_rows > 0) {
         $conn->close();
         echo "Error: Book request for this book is already in progress or has been issued.";
 

@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS books_issue_log (
   due_date DATE NOT NULL,
   return_date DATE,
   FOREIGN KEY (member_id) REFERENCES member (id),
-  FOREIGN KEY (book_isbn) REFERENCES book (isbn)
+  FOREIGN KEY (book_isbn) REFERENCES books (isbn)
 );
 
 
