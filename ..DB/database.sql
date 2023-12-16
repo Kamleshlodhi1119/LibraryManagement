@@ -4,8 +4,8 @@ USE library_db;
 
 -- Table for Admin
 CREATE TABLE IF NOT EXISTS librarian (
-  id INT AUTO_INCREMENT NOT NULL,
-  username VARCHAR(20) PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(20) NOT NULL,
   password CHAR(40) NOT NULL,
   email VARCHAR(255) NOT NULL
 );
