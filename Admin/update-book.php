@@ -1,20 +1,25 @@
 <?php
 include(".././Student/header.php");
 session_start();
+
+// Redirect to login page if not logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: loginA.php");
     exit();
 }
 
+// Include file for login verification
 require_once './verify-login.php';
 
 $host = "localhost";
 $username = "root";
 $password = "";
 $database = "library_db";
+
+// Function to open database connection
 function openConnection()
 {
-    global $host, $username, $password, $database, $conn;
+    global $host, $username, $password, $database;
     $conn = new mysqli($host, $username, $password, $database);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -22,24 +27,60 @@ function openConnection()
     return $conn;
 }
 
-
-
-
-//update
-if (isset($_POST['isbn'])) {
-
-    echo "<script> alert('Are you sure to update the data');</script>";
+// Update book data
+if (isset($_POST['submit'])) {
     $conn = openConnection();
     $isbn = $_POST['isbn'];
+
+    // Check if valid ISBN was received
+    if (!$isbn) {
+        die("Invalid access. Please visit the book list page for update options.");
+    }
+
+    // Check if book with received ISBN exists
+    $stmt = $conn->prepare("SELECT ISBN FROM books WHERE ISBN=?");
+    $stmt->bind_param("s", $isbn);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    if (!$result->num_rows) {
+        die("Invalid book. Please visit the book list page for update options.");
+    }
+
     $title = $_POST['title'];
     $author = $_POST['author'];
     $category = $_POST['category'];
     $price = $_POST['price'];
     $copies = $_POST['copies'];
 
-    $stmt = $conn->prepare("UPDATE books SET title=?, author=?, category=?, price=?, copies=? WHERE isbn=?");
-    $stmt->bind_param("sssdii", $title, $author, $category, $price, $copies, $isbn);
+    // Define required columns and updated columns based on posted data
+    $requiredColumns = array('title', 'author', 'category', 'price', 'copies');
+    $updatedColumns = array();
+    foreach ($requiredColumns as $column) {
+        if (isset($_POST[$column])) {
+            $updatedColumns[] = $column;
+        }
+    }
 
+    // Build UPDATE statement with modified columns
+    $updateStatement = "UPDATE books SET ";
+    $boundParams = array();
+    for ($i = 0; $i < count($updatedColumns); $i++) {
+        $updateStatement .= $updatedColumns[$i] . "=?";
+        if ($i < count($updatedColumns) - 1) {
+            $updateStatement .= ",";
+        }
+        $boundParams[] = $_POST[$updatedColumns[$i]];
+    }
+
+    // Append WHERE clause with original ISBN
+    $updateStatement .= " WHERE isbn=?";
+    $boundParams[] = $isbn;
+
+    // Prepare and execute statement
+    $stmt = $conn->prepare($updateStatement);
+    $stmt->bind_param(str_repeat("s", count($boundParams)), ...$boundParams);
     if ($stmt->execute()) {
         header("Location: Admin.php");
         exit();
@@ -50,84 +91,114 @@ if (isset($_POST['isbn'])) {
     $stmt->close();
 }
 
+// Fetch book data for pre-filling the form
 if (isset($_GET["isbn"])) {
     $conn = openConnection();
     $isbn = $_GET['isbn'];
-    $sql = "SELECT * FROM books WHERE isbn='$isbn'";
-    $data = mysqli_query($conn, $sql);
-    $userinfo = mysqli_fetch_assoc($data);
-}
 
+    // Check if valid ISBN was received
+    if (!$isbn) {
+        die("Invalid access. Please visit the book list page for update options.");
+    }
+
+    // Check if book with received ISBN exists
+    $stmt = $conn->prepare("SELECT ISBN FROM books WHERE ISBN=?");
+    $stmt->bind_param("s", $isbn);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    if (!$result->num_rows) {
+        die("Invalid book. Please visit the book list page for update options.");
+    }
+
+    // Fetch book data for pre-filling form
+    $stmt = $conn->prepare("SELECT * FROM books WHERE isbn=?");
+    $stmt->bind_param("s", $isbn);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $userinfo = $result->fetch_assoc();
+    $stmt->close();
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Data</title>
     <link rel="stylesheet" href="../Student/styles.css">
-
     <style>
-        body {
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 14px red;
+            width: 300px;
+        }
 
-            background-color: lightblue;
-            opacity: 100%;
-            margin: 12px;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 12px;
-            padding: 2rem;
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+
+
+        input {
+            width: calc(100% - 20px);
+            padding: 2px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: blue;
         }
     </style>
+    <title>Update Data</title>
 </head>
 
 <body>
+    <nav>
 
-    <section>
-        <div class="nav-container">
-            <nav class="nav">
-                <?php
-                // Displaying the welcome message and user details
-
-                echo "<div>";
-                echo "<h3>Welcome</h3>";
-                echo "<h5>Name: <b>" . $_SESSION['username'] . "</b></h5>";
-
-                ?>
-                <div>
-                    <button><a href="Admin.php">Dashboard</a></button>
-                </div>
-            </nav>
+        <div>
+            <a href="Admin.php"><button>Dashboard</button></a>
         </div>
-
-
-    </section>
-
-    <p>
-    <form action="update-book.php" method="POST" onsubmit="alert('confirm to up date');">
-        <h1>Update Data</h1>
-        ISBN: <input type="text" name="isbn" value="<?php echo $userinfo['isbn']; ?>" required><br />
-        Title: <input type="text" name="title" value="<?php echo $userinfo['title']; ?>" required><br />
-        Author: <input type="text" name="author" value="<?php echo $userinfo['author']; ?>" required><br />
-        Category: <input type="text" name="category" value="<?php echo $userinfo['category']; ?>" required><br />
-        Price: <input type="text" name="price" value="<?php echo $userinfo['price']; ?>" required><br />
-        Copies: <input type="text" name="copies" value="<?php echo $userinfo['copies']; ?>" required><br />
-        <input type="submit" name="submit" value="Update Data">
-    </form>
-    </p>
+    </nav>
+    <div class="container">
+        <form action="update-book.php" method="POST" onsubmit="return confirm('Are you sure to update the data?')">
+            <h3>Update Data</h3>
+            <label for="isbn">ISBN:</label>
+            <input type="text" name="isbn" value="<?php echo $userinfo['isbn']; ?>" required readonly>
+            <label for="title">Title:</label>
+            <input type="text" name="title" value="<?php echo $userinfo['title']; ?>" required>
+            <label for="author">Author:</label>
+            <input type="text" name="author" value="<?php echo $userinfo['author']; ?>" required>
+            <label for="category">Category:</label>
+            <input type="text" name="category" value="<?php echo $userinfo['category']; ?>" required>
+            <label for="price">Price:</label>
+            <input type="text" name="price" value="<?php echo $userinfo['price']; ?>" required>
+            <label for="copies">Copies:</label>
+            <input type="text" name="copies" value="<?php echo $userinfo['copies']; ?>" required>
+            <input type="submit" name="submit" value="Update Data">
+        </form>
+    </div>
     <pre>
 
-
-
-
-
-</pre>
-    
-<?php
-include("../footer.php");
-?>
-
+    </pre>
+    <?php include("../footer.php"); ?>
 </body>
 
 </html>
