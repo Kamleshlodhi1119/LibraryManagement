@@ -26,9 +26,9 @@ function openConnection()
 }
 function searchBooks($keyword)
 {
-    $member = $_SESSION['Username'];
+    $Username = $_SESSION['Username'];
     $conn = openConnection();
-    $sql = "SELECT * FROM books_issue_log WHERE member_id='$member'";
+    $sql = "SELECT * FROM books_issue_log WHERE Username='$Username'";
     $result = $conn->query($sql);
     $books = array();
     if ($result && $result->num_rows > 0) {
@@ -82,10 +82,10 @@ function searchBooks($keyword)
            
             <table border="1px" class="book-table">
                 <tr>
-                    <th>member_id</th>
-                    <th>issue_id</th>
-                    <th>book_isbn</th>
+                    <th>Uername</th>
+                    <th>isbn</th>
                     <th>due_date</th>
+                    <th>return_date</th>
                 </tr>
                 <?php
                 if (isset($_POST['search_books'])) {
@@ -94,10 +94,10 @@ function searchBooks($keyword)
                     if (count($searchedBooks) > 0) {
                         foreach ($searchedBooks as $book) {
                             echo "<tr class='tr'>";
-                            echo "<td class='tr'>" . $book['member_id'] . "</td>";
-                            echo "<td class='tr'>" . $book['issue_id'] . "</td>";
-                            echo "<td class='tr'>" . $book['book_isbn'] . "</td>";
+                            echo "<td class='tr'>" . $book['Username'] . "</td>";
+                            echo "<td class='tr'>" . $book['isbn'] . "</td>";
                             echo "<td class='tr'>" . $book['due_date'] . "</td>";
+                            echo "<td class='tr'>" . $book['return_date']. "</td>";
                             echo "</tr class='tr'>";
                         }
                     } else {

@@ -54,41 +54,72 @@ function searchBooks($keyword)
     $conn->close();
     return $books;
 }
-
-
-// books request
+ // Books request
 function saveBookRequest($books_isbn, $Username)
 {
     $conn = openConnection();
 
-    
-    $sqlCheckPendingRequest = "SELECT * FROM `pending_books_requests` WHERE `Username` = '$Username' AND `book_isbn` = '$books_isbn'";
-    $resultPending = $conn->query($sqlCheckPendingRequest);
+    // Check if a request with the same ISBN and username already exists in pending_books_requests
+    $checkPendingSql = "SELECT * FROM pending_books_requests WHERE isbn = ? AND Username = ?";
+    $checkPendingStmt = $conn->prepare($checkPendingSql);
 
-    
-    $sqlCheckIssuedBooks = "SELECT * FROM `books_issue_log` WHERE `Username` = '$Username' AND `book_isbn` = '$books_isbn'";
-    $resultIssued = $conn->query($sqlCheckIssuedBooks);
+    if ($checkPendingStmt) {
+        $checkPendingStmt->bind_param("ss", $books_isbn, $Username);
+        $checkPendingStmt->execute();
+        $checkPendingStmt->store_result();
 
-    
-    if ($resultPending  === false|| $resultIssued  === false) {
-        $conn->close();
-        echo "Error: Book request for this book is already in progress or has been issued.";
-
-        return false;
-    } else {
-        
-        $sqlInsertRequest = "INSERT INTO `pending_books_requests` (`request_id`, `Username`, `book_isbn`, `time`) VALUES (NULL, '$Username', '$books_isbn', NOW())";
-
-        if ($conn->query($sqlInsertRequest) === TRUE) {
+        if ($checkPendingStmt->num_rows > 0) {
+            echo "Request is already in progress for ISBN $books_isbn.";
+            $checkPendingStmt->close();
             $conn->close();
-            return true;
-        } else {
-            $conn->close();
-            return false;
+            return;
         }
-    }
-}
 
+        $checkPendingStmt->close();
+    } else {
+        echo "Error in preparing SQL statement for pending_books_requests check: " . $conn->error;
+        $conn->close();
+        return;
+    }
+
+    // Check if the book is already issued in books_issue_log
+    $checkIssueSql = "SELECT * FROM books_issue_log WHERE isbn = ? AND Username = ?";
+    $checkIssueStmt = $conn->prepare($checkIssueSql);
+
+    if ($checkIssueStmt) {
+        $checkIssueStmt->bind_param("ss", $books_isbn, $Username);
+        $checkIssueStmt->execute();
+        $checkIssueStmt->store_result();
+
+        if ($checkIssueStmt->num_rows > 0) {
+            echo "The book with ISBN $books_isbn is already issued.";
+            $checkIssueStmt->close();
+            $conn->close();
+            return;
+        }
+
+        $checkIssueStmt->close();
+    } else {
+        echo "Error in preparing SQL statement for books_issue_log check: " . $conn->error;
+        $conn->close();
+        return;
+    }
+
+    // If no existing request or issue, proceed to insert the new request
+    $insertSql = "INSERT INTO pending_books_requests (isbn, Username) VALUES (?, ?)";
+    $insertStmt = $conn->prepare($insertSql);
+
+    if ($insertStmt) {
+        $insertStmt->bind_param("ss", $books_isbn, $Username);
+        $insertStmt->execute();
+        $insertStmt->close();
+        echo "Book request submitted successfully!";
+    } else {
+        echo "Error in preparing SQL statement for insert: " . $conn->error;
+    }
+
+    $conn->close();
+}
 
 ?>
 

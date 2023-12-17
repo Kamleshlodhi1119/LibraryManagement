@@ -27,10 +27,9 @@ function searchBooks($keyword)
 {
 
 
-
-    $member = $_SESSION['Username'];
+    $Username = $_SESSION['Username'];
     $conn = openConnection();
-    $sql = "SELECT * FROM  pending_books_requests WHERE Username= '$member'  "; // WHERE books_isbn LIKE '%$keyword%' OR member LIKE '%$keyword%'
+    $sql = "SELECT * FROM  pending_books_requests WHERE Username= '$Username'  "; 
     $result = $conn->query($sql);
     $books = array();
     if ($result && $result->num_rows > 0) {
@@ -47,16 +46,16 @@ function searchBooks($keyword)
 if (isset($_GET['reject'])) {
     $conn = openConnection();
     $books_isbn = $_GET['reject'];
-    $member = $_SESSION['Username'];
+    $Username = $_SESSION['Username'];
 
-    $stmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE book_isbn = ? AND Username = ?");
+    $stmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE isbn = ? AND Username = ?");
 
     if (!$stmt) {
         echo "Error in SQL query: " . $conn->error;
         exit();
     }
 
-    $stmt->bind_param("ss", $books_isbn, $member);
+    $stmt->bind_param("ss", $books_isbn, $Username);
 
     if ($stmt->execute()) {
         header("Location: mypendingbookrequest.php");
@@ -88,7 +87,7 @@ if (isset($_GET['reject'])) {
 <body>
 <nav>
         <ul>
-            <!-- <li><a href="mypendingbookrequest.php"><button>My pending book request</button></a></li> -->
+          
             <li><a href="myissuebook.php"><button>Issue books</button></a></li>
             <li><a href="student.php"><button>Dashboard</button></a></li>
         </ul>
@@ -110,8 +109,8 @@ if (isset($_GET['reject'])) {
             
             <table border="1px" class="book-table">
                 <tr>
-                    <th>request_id</th>
-                    <th>member</th>
+                   
+                    <th>Username</th>
                     <th>books_isbn</th>
                     <th>time</th>
 
@@ -123,11 +122,10 @@ if (isset($_GET['reject'])) {
                     $searchedBooks = searchBooks($keyword);
                     if (count($searchedBooks) > 0) {
                         foreach ($searchedBooks as $book) {
-                            $books_isbn = $book['book_isbn'];
+                            $books_isbn = $book['isbn'];
                             echo "<tr class='tr'>";
-                            echo "<td class='tr'>" . $book['request_id'] . "</td>";
                             echo "<td class='tr'>" . $book['Username'] . "</td>";
-                            echo "<td class='tr'>" . $book['book_isbn'] . "</td>";
+                            echo "<td class='tr'>" . $book['isbn'] . "</td>";
                             echo "<td class='tr'>" . $book['time'] . "</td>";
                             echo "<td><a href='mypendingbookrequest.php?reject=$books_isbn'>Delete Request </a></td>";
                             echo "</tr class='tr'>";

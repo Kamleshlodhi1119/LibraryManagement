@@ -45,7 +45,7 @@ if (isset($_GET['reject'])) {
     $book_isbn = $_GET['reject'];
 
 
-    $stmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE book_isbn=?");
+    $stmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE isbn=?");
 
     if (!$stmt) {
         echo "Error in SQL query: " . $conn->error;
@@ -61,97 +61,69 @@ if (isset($_GET['reject'])) {
         echo "Error executing query: " . $stmt->error;
     }
 }
+
+// Approve
 if (isset($_GET['approve'])) {
     $conn = openConnection();
     $book_isbn = $_GET['approve'];
     $username = $_GET['Username'];
 
-    $selectMemberIdStmt = $conn->prepare("SELECT id FROM `member` WHERE Username = ?");
+    $insertStmt = $conn->prepare("INSERT INTO `books_issue_log` (Username, isbn, due_date, return_date)
+                                VALUES (?, ?, NOW(), NULL)");
 
-    if (!$selectMemberIdStmt) {
+    if (!$insertStmt) {
         echo "Error in SQL query: " . $conn->error;
         exit();
     }
 
-    $selectMemberIdStmt->bind_param("s", $username);
+    $insertStmt->bind_param("ss", $username, $book_isbn);
 
-    if (!$selectMemberIdStmt->execute()) {
-        echo "Error executing query: " . $selectMemberIdStmt->error;
+    if (!$insertStmt->execute()) {
+        echo "Error executing query: " . $insertStmt->error;
         exit();
     }
 
-    $selectMemberIdStmt->bind_result($memberId);
+    $insertStmt->close();
 
-    if ($selectMemberIdStmt->fetch()) {
-        $selectMemberIdStmt->close();
+    $deleteStmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE isbn = ?");
 
-        $insertStmt = $conn->prepare("INSERT INTO `books_issue_log` (member_id, book_isbn, due_date, return_date)
-                                     VALUES (?, ?, NOW(), NULL)");
-
-        if (!$insertStmt) {
-            echo "Error in SQL query: " . $conn->error;
-            exit();
-        }
-
-        $insertStmt->bind_param("is", $memberId, $book_isbn);
-
-        if (!$insertStmt->execute()) {
-            echo "Error executing query: " . $insertStmt->error;
-            exit();
-        }
-
-        $insertStmt->close();
-
-        $deleteStmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE book_isbn = ?");
-
-        if (!$deleteStmt) {
-            echo "Error in SQL query: " . $conn->error;
-            exit();
-        }
-
-        $deleteStmt->bind_param("s", $book_isbn);
-
-        if (!$deleteStmt->execute()) {
-            echo "Error executing query: " . $deleteStmt->error;
-            exit();
-        }
-
-        $deleteStmt->close();
-        // $conn->close();
-
-        //     header("Location: pendingbookrequest.php");
-        //     exit();
-        // } else {
-        //     echo "Member not found with the provided username.";
-        // }
-
-        //update copies
-
-        $updateStmt = $conn->prepare("UPDATE `books` SET `copies`=`copies`-1 WHERE isbn=?");
-
-        if (!$updateStmt) {
-            echo "Error in SQL query: " . $conn->error;
-            exit();
-        }
-
-        $updateStmt->bind_param("s", $book_isbn);
-
-        if (!$updateStmt->execute()) {
-            echo "Error executing query: " . $updateStmt->error;
-            exit();
-        }
-
-        $updateStmt->close(); // Close the prepared statement after execution
-
-
-        $conn->close();
-
-        header("Location: pendingbookrequest.php");
+    if (!$deleteStmt) {
+        echo "Error in SQL query: " . $conn->error;
         exit();
-    } else {
-        echo "Member not found with the provided username.";
     }
+
+    $deleteStmt->bind_param("s", $book_isbn);
+
+    if (!$deleteStmt->execute()) {
+        echo "Error executing query: " . $deleteStmt->error;
+        exit();
+    }
+
+    $deleteStmt->close();
+
+    // Update copies in books
+    $updateStmt = $conn->prepare("UPDATE `books` SET `copies` = `copies` - 1 WHERE isbn = ?");
+
+    if (!$updateStmt) {
+        echo "Error in SQL query: " . $conn->error;
+        exit();
+    }
+
+    $updateStmt->bind_param("s", $book_isbn);
+
+    if (!$updateStmt->execute()) {
+        echo "Error executing query: " . $updateStmt->error;
+        exit();
+    }
+
+    $updateStmt->close();
+
+    $conn->close();
+
+    header("Location: pendingbookrequest.php");
+    exit();
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -178,7 +150,7 @@ if (isset($_GET['approve'])) {
     <div class="container">
     <h2 style="display: flex; justify-content: center; text-shadow:2px 2px rgb(124, 189, 164);">Pending Books Requests</h2>
         <form action="#" method="post">
-            <input type="text" name="keyword" placeholder="Enter book_isbn/member  ">
+            <input type="text" name="keyword" placeholder="Enter isbn/member  ">
             <input type="submit" name="search_books" value="Search">
 
         </form>
@@ -191,7 +163,7 @@ if (isset($_GET['approve'])) {
         <table border="1px" class="book-table">
             <tr>
                 <th>S.No</th>
-                <th>request_id</th>
+            
                 <th>Username</th>
                 <th>book_isbn</th>
                 <th>time</th>
@@ -205,13 +177,12 @@ if (isset($_GET['approve'])) {
                 $i = 1;
                 if (count($searchedBooks) > 0) {
                     foreach ($searchedBooks as $book) {
-                        $book_isbn = $book['book_isbn'];
+                        $book_isbn = $book['isbn'];
                         $Username = $book['Username'];
                         echo "<tr class='tr'>";
                         echo "<td class='tr'>" . $i . "</td>";
-                        echo "<td class='tr'>" . $book['request_id'] . "</td>";
                         echo "<td class='tr'>" . $book['Username'] . "</td>";
-                        echo "<td class='tr'>" . $book['book_isbn'] . "</td>";
+                        echo "<td class='tr'>" . $book['isbn'] . "</td>";
                         echo "<td class='tr'>" . $book['time'] . "</td>";
                         echo "<td><a href='pendingbookrequest.php?approve=$book_isbn&&Username=$Username'>Approve </a></td>";
                         echo "<td><a href='pendingbookrequest.php?reject=$book_isbn'>Reject </a></td>";

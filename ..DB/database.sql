@@ -36,16 +36,15 @@ CREATE TABLE IF NOT EXISTS books (
 
 -- Table for Book Issue Log
 CREATE TABLE IF NOT EXISTS books_issue_log (
-  member_id INT(11) NOT NULL,
-  book_isbn CHAR(13) NOT NULL,
+  Uername char(255) NOT NULL,
+  isbn CHAR(13) NOT NULL,
   due_date DATE NOT NULL,
   return_date DATE
 );
 
-CREATE TABLE IF NOT EXISTS pending_books (
-  isbn CHAR(13) NOT NULL PRIMARY KEY,
-  title VARCHAR(80) NOT NULL,
-  author VARCHAR(80) NOT NULL,
-  category VARCHAR(80) NOT NULL,
-  price INT(4) UNSIGNED NOT NULL
+CREATE TABLE IF NOT EXISTS pending_books_requests (
+  isbn CHAR(13) NOT NULL ,
+  Username VARCHAR(80) NOT NULL,
+  time DATE DEFAULT CURRENT_TIMESTAMP
+  
 );
