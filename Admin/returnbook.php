@@ -24,7 +24,7 @@ function openConnection()
 function searchBooks($keyword)
 {
     $conn = openConnection();
-    $sql = "SELECT * FROM books_issue_log WHERE book_isbn LIKE '%$keyword%' OR member_id LIKE '%$keyword%'";
+    $sql = "SELECT * FROM books_issue_log WHERE isbn LIKE '%$keyword%' OR Username LIKE '%$keyword%'";
     $result = $conn->query($sql);
     $books = array();
     if ($result && $result->num_rows > 0) {
@@ -35,10 +35,11 @@ function searchBooks($keyword)
     $conn->close();
     return $books;
 }
-
-if (isset($_GET['book_isbn'])) {
+//retrun
+if (isset($_GET['isbn']) && isset($_GET['username'])) {
     $conn = openConnection();
-    $book_isbn = $_GET['book_isbn'];
+    $book_isbn = $_GET['isbn'];
+    $username = $_GET['username'];
 
     $updateStmt = $conn->prepare("UPDATE `books` SET `copies`=`copies`+1 WHERE isbn=?");
 
@@ -58,14 +59,13 @@ if (isset($_GET['book_isbn'])) {
 
 
 
-    $stmt = $conn->prepare("DELETE FROM `books_issue_log` WHERE book_isbn=?");
+    $stmt = $conn->prepare("DELETE FROM `books_issue_log` WHERE isbn=? AND Username=?");
+    $stmt->bind_param("ss", $book_isbn, $username);
 
     if (!$stmt) {
         echo "Error in SQL query: " . $conn->error;
         exit();
     }
-
-    $stmt->bind_param("s", $book_isbn);
 
     if ($stmt->execute()) {
         header("Location: returnbook.php");
@@ -93,14 +93,7 @@ if (isset($_GET['book_isbn'])) {
     <section>
        
             <nav>
-                <?php
-                // Displaying the welcome message and user details
-
-                // echo "<div>";
-                // echo "<h3>Welcome</h3>";
-                // echo "<h5>Name: <b>" . $_SESSION['username'] . "</b></h5>";
-
-                ?>
+               
                 <div>
                     <a href="Admin.php"><button>Dashboard</button></a>
                 </div>
@@ -125,8 +118,8 @@ if (isset($_GET['book_isbn'])) {
         <h2 style="display: flex; justify-content: center; text-shadow:2px 2px rgb(124, 189, 164); background-color: aqua;"> Books</h2>
             <table border="1px" class="book-table">
                 <tr>
-                    <th>issue_id</th>
-                    <th>member</th>
+                    
+                    <th>Username</th>
                     <th>book_isbn</th>
                     <th>due_date</th>
                     <th>return</th>
@@ -137,13 +130,12 @@ if (isset($_GET['book_isbn'])) {
                     $searchedBooks = searchBooks($keyword);
                     if (count($searchedBooks) > 0) {
                         foreach ($searchedBooks as $book) {
-                            $book_isbn = $book['book_isbn'];
+                            $book_isbn = $book['isbn'];
                             echo "<tr class='tr'>";
-                            echo "<td class='tr'>" . $book['issue_id'] . "</td>";
-                            echo "<td class='tr'>" . $book['member_id'] . "</td>";
-                            echo "<td class='tr'>" . $book['book_isbn'] . "</td>";
+                            echo "<td class='tr'>" . $book['Username'] . "</td>";
+                            echo "<td class='tr'>" . $book['isbn'] . "</td>";
                             echo "<td class='tr'>" . $book['due_date'] . "</td>";
-                            echo "<td><a href='returnbook.php?book_isbn=$book_isbn'>return </a></td>";
+                            echo "<td><a href='returnbook.php?isbn={$book['isbn']}&username={$book['Username']}'>Return</a></td>";
                             echo "</tr class='tr'>";
                         }
                     } else {

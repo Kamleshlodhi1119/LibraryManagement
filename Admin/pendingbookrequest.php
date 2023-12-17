@@ -85,14 +85,14 @@ if (isset($_GET['approve'])) {
 
     $insertStmt->close();
 
-    $deleteStmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE isbn = ?");
+    $deleteStmt = $conn->prepare("DELETE FROM `pending_books_requests` WHERE isbn = ? AND Username=? ");
 
     if (!$deleteStmt) {
         echo "Error in SQL query: " . $conn->error;
         exit();
     }
 
-    $deleteStmt->bind_param("s", $book_isbn);
+    $deleteStmt->bind_param("ss", $book_isbn,$username);
 
     if (!$deleteStmt->execute()) {
         echo "Error executing query: " . $deleteStmt->error;
