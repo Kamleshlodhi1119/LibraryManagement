@@ -197,6 +197,18 @@ if (isset($_GET['approve'])) {
             ?>
         </table>
     </div>
+    <pre>
+
+
+
+
+
+</pre>
+    
+<?php
+include("../footer.php");
+?>
+
 </body>
 
 </html>

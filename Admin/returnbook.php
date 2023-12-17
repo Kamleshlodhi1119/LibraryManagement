@@ -146,7 +146,18 @@ if (isset($_GET['isbn']) && isset($_GET['username'])) {
             </table>
         </div>
     </div>
-    <?php include("../footer.php"); ?>
+    <pre>
+
+
+
+
+
+  </pre>
+      
+<?php
+include("../footer.php");
+?>
+
 </body>
 
 </html>

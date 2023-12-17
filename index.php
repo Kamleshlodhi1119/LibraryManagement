@@ -117,8 +117,7 @@
         <a href="#">Terms of Service</a>
       </div>
     </div>
-  </footer>
-
+  </footer> 
   <script>
 
   </script>

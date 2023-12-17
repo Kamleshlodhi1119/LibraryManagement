@@ -139,7 +139,18 @@ if (isset($_GET['reject'])) {
         </div>
 
     </section>
-   
+    <pre>
+
+
+
+
+
+</pre>
+    
+<?php
+include("../footer.php");
+?>
+
 </body>
 
 </html>

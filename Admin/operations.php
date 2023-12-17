@@ -288,6 +288,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirmed_delete']) &&
         ?>
 
     </div>
+    <pre>
+
+
+
+
+
+</pre>
+    
+<?php
+include("../footer.php");
+?>
+
 </body>
 
 </html>

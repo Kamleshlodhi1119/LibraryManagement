@@ -213,10 +213,17 @@ if (isset($_GET['title'])) {
             ?>
         </table>
     </section>
-    <?php
-    // include(".././Student/header.php");
-    ?>
+  <pre>
 
+
+
+
+
+  </pre>
+      
+<?php
+include("../footer.php");
+?>
 
 </body>
 

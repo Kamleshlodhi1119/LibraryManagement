@@ -109,7 +109,18 @@ function searchBooks($keyword)
         </div>
 
     </section>
-  
+    <pre>
+
+
+
+
+
+</pre>
+    
+<?php
+include("../footer.php");
+?>
+
 </body>
 
 </html>

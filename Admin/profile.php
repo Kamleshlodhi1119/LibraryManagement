@@ -173,5 +173,17 @@ function openConnection()
        
     </div>
     <!-- End -->
+    <pre>
+
+
+
+
+
+</pre>
+    
+<?php
+include("../footer.php");
+?>
+
 </body>
 </html>

@@ -116,6 +116,18 @@ if (isset($_GET["isbn"])) {
         <input type="submit" name="submit" value="Update Data">
     </form>
     </p>
+    <pre>
+
+
+
+
+
+</pre>
+    
+<?php
+include("../footer.php");
+?>
+
 </body>
 
 </html>
