@@ -160,7 +160,7 @@ function saveBookRequest($books_isbn, $Username)
     </section>
 
     <section>
-    <h2 style="display: flex; justify-content: center; text-shadow:2px 2px rgb(124, 189, 164); background-color:  #adb5bd;"> Books</h2>
+    <h2 style="display: flex; justify-content: center; text-shadow:2px 2px rgb(124, 189, 164); background-color: #dee2e6;"> Books</h2>
         <table border="1px" class="book-table">
             <tr>
                 <th>S.No</th>

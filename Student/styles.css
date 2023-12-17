@@ -1,260 +1,265 @@
 body {
 
-    background-color: lightblue;
-    opacity: 100%;
-    margin: 2px;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+  background-color: lightblue;
+  opacity: 100%;
+  margin: 2px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
 
 }
 
 /* Header Styles */
 
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .user-info {
-    text-align: center;
+  text-align: center;
 }
 
 .nav-links button {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .search-section {
-    background-color: #f0f0f0;
-    padding: 20px;
+  background-color: #f0f0f0;
+  padding: 20px;
 }
 
 .container {
-    max-width: 300px;
-    margin: 0 auto;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 input[type="text"] {
-    flex: 1;
-    padding: 5px;
+  flex: 1;
+  padding: 5px;
 }
 
 input[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 5px 15px;
-    cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
 }
 
 /* Book Listing Section Styles */
 .book-listing-section {
-    padding: 10px;
+  padding: 10px;
 }
 
 .book-table {
-    width: 50%;
-    color: #333;
-    /*change*/
-    /* border-collapse:  ; */
-    margin-left: 20%;
+  width: 50%;
+  color: #333;
+  /*change*/
+  /* border-collapse:  ; */
+  margin-left: 20%;
 }
 
 .book-table th,
 .book-table td {
-    border: 1px solid #ffc;
-    padding: 10px;
-    text-align: center;
+  border: 1px solid #ffc;
+  padding: 10px;
+  text-align: center;
 }
 
 .book-table th {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
 
 
 }
 
 .footer-content {
-    background-color: #334;
-    color: #fff;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
+  background-color: #334;
+  color: #fff;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
 }
 
 
 header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 50px 0;
-  }
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 50px 0;
+}
 
-  h1 {
-    font-size: 36px;
-  }
+h1 {
+  font-size: 36px;
+}
 
-  h2 {
-    font-size: 24px;
-    font-style: italic;
-  }
+h2 {
+  font-size: 24px;
+  font-style: italic;
+}
 
 
-  nav {
-    background-color: #444;
-    text-align: center;
-  }
+nav {
+  background-color: #444;
+  text-align: center;
+}
 
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  nav li {
-    display: inline-block;
-    padding: 20px;
-  }
+nav li {
+  display: inline-block;
+  padding: 20px;
+}
 
-  nav a {
-    color: #fff;
-    text-decoration: none;
-  }
+tr:hover {
+  background-color: #d7e3fc;
+}
 
-  main {
-    padding: 30px;
-  }
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
 
-  .testimonial-section {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+main {
+  padding: 30px;
+}
 
-  .testimonial {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 5px;
-    margin: 10px;
-  }
+.testimonial-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-  .social-proof {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+.testimonial {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px;
+}
 
-  .partner-logos {
-    display: flex;
-    justify-content: center;
-  }
+.social-proof {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-  .partner-logos1 {
-    display: flex;
-    justify-content: space-between;
-  }
+.partner-logos {
+  display: flex;
+  justify-content: center;
+}
 
-  .partner-logos img {
-    width: 100px;
-    margin: 10px;
-  }
+.partner-logos1 {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .partner-logos1 img {
-    width: 100px;
-    margin: 10px;
-  }
-  .latest-updates {
-    text-align: center;
-  }
+.partner-logos img {
+  width: 100px;
+  margin: 10px;
+}
 
-  .blog-post {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 5px;
-    margin: 10px;
-  }
+.partner-logos1 img {
+  width: 100px;
+  margin: 10px;
+}
 
-  .read-more {
-    color: #ff6600;
-    text-decoration: none;
-  }
+.latest-updates {
+  text-align: center;
+}
 
-  footer {
-    background-color: #252525;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-  }
+.blog-post {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px;
+}
 
-  .footer-content {
-    display: flex;
-    justify-content: space-around;
-  }
+.read-more {
+  color: #ff6600;
+  text-decoration: none;
+}
 
-  .contact-info,
-  .social-media,
-  .useful-resources {
-    margin: 10px;
-  }
+footer {
+  background-color: #252525;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
 
-  .dropbtn {
-    background-color: blue;
-    color: white;
-    padding: 8px 15px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-info,
+.social-media,
+.useful-resources {
+  margin: 10px;
+}
+
+.dropbtn {
+  background-color: blue;
+  color: white;
+  padding: 8px 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
 .fa {
-padding: 20px;
-font-size: 30px;
-width: 30px;
-text-align: center;
-text-decoration: none;
-border-radius:50%  ;
-margin: 5px 2px;
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  margin: 5px 2px;
 }
 
 .fa:hover {
-    background-color: #1200b5;
-    transform: rotate(90deg);
+  background-color: #1200b5;
+  transform: rotate(90deg);
   opacity: 0.5;
 }
 
 .fa-facebook {
-background: #3B5998;
-color: white;
+  background: #3B5998;
+  color: white;
 }
 
 .fa-twitter {
-background: #55ACEE;
-color: white;
+  background: #55ACEE;
+  color: white;
 }
 
 .fa-google {
-background: #dd4b39;
-color: white;
+  background: #dd4b39;
+  color: white;
 }
 
 .fa-linkedin {
-background: #007bb5;
-color: white;
+  background: #007bb5;
+  color: white;
 }
 
 .fa-youtube {
-background: #bb0000;
-color: white;
+  background: #bb0000;
+  color: white;
 }
 
 .fa-instagram {
-background: #125688;
-color: white;
+  background: #125688;
+  color: white;
 }
