@@ -17,16 +17,14 @@
       padding: 0;
     }
 
-   
-header {
-  background-color: #35424a;
-  color: #ffffff;
-  text-align: center;
-  padding-top: 30px;
-  min-height: 70px;
-  border-bottom: #e8491d 3px solid;
 
-}
+    header {
+      background: #35424a;
+      color: #ffffff;
+      padding-top: 30px;
+      min-height: 70px;
+      border-bottom: #e8491d 3px solid;
+    }
 
     h1 {
       font-size: 36px;
