@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS librarian (
 );
 
 
+
 -- Table for User
 CREATE TABLE IF NOT EXISTS member (
   Username VARCHAR(20) PRIMARY KEY,
