@@ -174,7 +174,10 @@ footer {
 }
 
 tr:hover {
-  background-color: #0096c7;
+  background-color: #fefae0;
+}
+table {
+  background-color: #90e0ef;
 }
 
 .fa-google {
