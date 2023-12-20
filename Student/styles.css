@@ -26,6 +26,10 @@ body {
   margin-left: 10px;
 }
 
+button:hover {
+  background-color: #00b4d8;
+}
+
 .search-section {
   background-color: #f0f0f0;
   padding: 20px;
@@ -167,6 +171,10 @@ footer {
 .fa-twitter {
   background: #55ACEE;
   color: white;
+}
+
+tr:hover {
+  background-color: #0096c7;
 }
 
 .fa-google {

@@ -23,17 +23,9 @@
 </head>
 
 <body>
-  <header>
-  <div class="partner-logos1">
-       
-        <img src="img/library-management-library-icons-png.jpg" alt="library-management-library-icons-png" style="background-color:rgb(254, 213, 213);border-radius:47% 53% 48% 52% / 50% 50% 50% 50%  ; box-shadow: 2px 2px 14px #7386d4;">
-      
-    <h2>Library Management System<br>Empowering Knowledge, Connecting Minds</h2>
-    <h4></h4>
-   
-</div>
-
-  </header>
+ 
+<?php include('./Student/header.php');
+?>
 
   <nav>
     <ul>
