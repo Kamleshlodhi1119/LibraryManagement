@@ -161,7 +161,7 @@ function saveBookRequest($books_isbn, $Username)
 
     <section>
     <h2 style="display: flex; justify-content: center; text-shadow:2px 2px rgb(124, 189, 164); background-color: #dee2e6;"> Books</h2>
-        <table border="1px" class="book-table">
+        <table style="border: 1px; table-layout: fixed;" class="book-table">
             <tr>
                 <th>S.No</th>
                 <th>ISBN</th>

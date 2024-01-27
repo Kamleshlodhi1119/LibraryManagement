@@ -147,7 +147,7 @@
   <header>
     <div class="partner-logos1">
 
-    <img src="../img/library.png" alt=" " style="background-color:#778da9;border-radius:47% 53% 48% 52% / 50% 50% 50% 50%  ; box-shadow: 2px 2px 14px #7386d4;">
+    <img src="../img/library.png" alt=" " style="border-radius:50% ;">
 
       <h2>Library Management System<br>Empowering Knowledge, Connecting Minds</h2>
       <h4></h4>

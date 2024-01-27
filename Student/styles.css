@@ -41,27 +41,30 @@ button:hover {
 }
 
 input[type="text"] {
-  flex: 1;
-  padding: 5px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 input[type="submit"] {
   background-color: #333;
   color: #fff;
   border: none;
-  padding: 5px 15px;
+  padding: 10px 15px;
   cursor: pointer;
 }
 
 /* Book Listing Section Styles */
 .book-listing-section {
-  padding: 10px;
+  padding: 30px;
+   margin: 20% 20%;
 }
 
 .book-table {
-  width: 50%;
+  width: 100%;
+  max-width:80%;
+  table-layout: fixed;
   color: #333;
-  margin-left: 20%;
 }
 
 .book-table th,
@@ -73,19 +76,6 @@ input[type="submit"] {
 
 .book-table th {
   background-color: #f0f0f0;
-}
-
-footer {
-  background-color: #252525;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.footer-content,
-.header {
-  display: flex;
-  justify-content: space-around;
 }
 
 /* Testimonial Section Styles */
@@ -108,6 +98,16 @@ footer {
 .partner-logos1 {
   display: flex;
   justify-content: center;
+  border-radius: 50%;
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+
+}
+@media (max-width: 768px) {
+  .partner-logos1 {
+      width: 80px; /* Adjust the width for smaller screens */
+      height: 80px; /* Adjust the height for smaller screens */
+  }
 }
 
 .partner-logos1 {
@@ -134,7 +134,7 @@ footer {
 .contact-info,
 .social-media,
 .useful-resources {
-  margin: 10px;
+  margin: 5px;
 }
 
 .dropbtn {
@@ -148,13 +148,13 @@ footer {
 
 /* Font Awesome Styles */
 .fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 30px;
+  padding: 5px;
+  font-size: 14px;
+  width: 10px;
   text-align: center;
   text-decoration: none;
   border-radius: 50%;
-  margin: 5px 2px;
+  margin: 1px 0.5px;
 }
 
 .fa:hover {
@@ -176,8 +176,10 @@ footer {
 tr:hover {
   background-color: #fefae0;
 }
+
 table {
   background-color: #90e0ef;
+  table-layout: fixed;
 }
 
 .fa-google {
