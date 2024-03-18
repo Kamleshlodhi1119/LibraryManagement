@@ -9,15 +9,7 @@
   <link rel="stylesheet" href="./Student/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    body {
-
-      background-color:lightblue;
-      opacity: 100%;
-      
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+   
  
   </style>
 </head>

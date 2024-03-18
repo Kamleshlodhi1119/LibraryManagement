@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $username = "root";
-$password = "";
+$password = "kam@1119";
 $database = "library_db";
 
 

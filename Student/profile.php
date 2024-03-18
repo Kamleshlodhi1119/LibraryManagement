@@ -112,6 +112,18 @@ function openConnection()
             color: #e7e7e8;
             right: 14%;
         }
+         .main .card table {
+            border: none;
+            font-size: 16px;
+            height: 270px;
+            width: 80%;
+        }
+
+        .edit {
+            position: absolute;
+            color: #e7e7e8;
+            right: 14%;
+        }
     </style>
 
     <!-- FontAwesome 5 -->

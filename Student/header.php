@@ -84,9 +84,7 @@
     }
 
     .partner-logos1 {
-      display: flex;
-      justify-content: space-between;
-    }
+          }
 
     .partner-logos img {
       width: 100px;

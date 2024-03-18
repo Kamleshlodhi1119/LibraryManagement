@@ -96,11 +96,8 @@ input[type="submit"] {
 /* Partner Logos Styles */
 .partner-logos,
 .partner-logos1 {
-  display: flex;
-  justify-content: center;
+  display: inline;
   border-radius: 50%;
-  width: 100px; /* Adjust the width as needed */
-  height: 100px; /* Adjust the height as needed */
 
 }
 @media (max-width: 768px) {

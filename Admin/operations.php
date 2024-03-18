@@ -3,7 +3,7 @@ include(".././Student/header.php");
 
 $host = "localhost";
 $username = "root";
-$password = "";
+$password = "kam@1119";
 $database = "library_db";
 
 function openConnection()

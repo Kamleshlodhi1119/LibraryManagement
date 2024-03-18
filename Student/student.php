@@ -11,7 +11,7 @@ require 'verify-loginS.php';
 
 $host = "localhost";
 $username = "root";
-$password = "";
+$password = "kam@1119";
 $database = "library_db";
 
 function openConnection()
